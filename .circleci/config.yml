@@ -2,7 +2,7 @@ version: 2 # use CircleCI 2.0
 jobs: # A basic unit of work in a run
   build: # runs not using Workflows must have a `build` job as entry point 
     # directory where steps are run
-    working_directory: ~/startup
+    working_directory: ~/startup/startup
     docker: # run the steps with Docker
       # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
       - image: circleci/python:3.7.1
@@ -31,12 +31,12 @@ jobs: # A basic unit of work in a run
           command: |
             sudo pip3 install pipenv
             pipenv install
-      - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-          paths:
-            - ".venv"
-            - "/usr/local/bin"
-            - "/usr/local/lib/python3.7/site-packages"
+      # - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
+      #     key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+      #     paths:
+      #       - ".venv"
+      #       - "/usr/local/bin"
+      #       - "/usr/local/lib/python3.7/site-packages"
       - run:
           command: |
             pipenv run "python3 manage.py test"

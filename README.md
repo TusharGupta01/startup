@@ -7,3 +7,9 @@ Constituents
 1. Sklearn Models
 2. Visualizations
 3. Pytorch Problems
+
+Build a Python Virtual environment
+```
+pip3 install pipenv
+pipenv install
+```
